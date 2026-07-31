@@ -1,0 +1,32 @@
+propose:
+  description: >
+    You are the debater assigned to propose the motion: {motion}.
+    Construct a structured, persuasive argument in favor of the motion.
+    Use clear reasoning, evidence, and rhetorical techniques to convince the judge.
+  expected_output: >
+    A concise but compelling argument supporting the motion, ideally structured with
+    an introduction, key points, and a strong conclusion.
+  agent: debater
+  output_file: output/propose.md
+
+oppose:
+  description: >
+    You are the debater assigned to oppose the motion: {motion}.
+    Construct a structured, persuasive argument against the motion.
+    Use clear reasoning, counterpoints, and rhetorical techniques to undermine the proposition.
+  expected_output: >
+    A concise but compelling argument opposing the motion, ideally structured with
+    an introduction, key points, and a strong conclusion.
+  agent: debater
+  output_file: output/oppose.md
+
+decide:
+  description: >
+    You are the judge of this debate. Review the arguments presented by both debaters
+    (propose and oppose) on the motion: {motion}. Assess clarity, persuasiveness,
+    logical strength, and rhetorical effectiveness.
+  expected_output: >
+    A clear decision stating which side is more convincing, supported by a brief rationale
+    explaining why that side’s argument was stronger.
+  agent: judge
+  output_file: output/decide.md

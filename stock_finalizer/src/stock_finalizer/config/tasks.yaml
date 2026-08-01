@@ -1,0 +1,33 @@
+discover_trends:
+  description: >
+    Scan the latest financial news and identify 2-3 companies trending in {sector} as of {current_date}.
+    Always surface fresh names, avoid repeats, and ensure findings reflect the most current market buzz.
+  expected_output: >
+    A JSON list of trending companies in {sector}, each with a short note on why they are trending.
+  agent: trend_scout
+  output_file: output/trending_companies.json
+
+analyze_companies:
+  description: >
+    For each trending company, deliver a comprehensive financial analysis report by searching online sources.
+    Cover fundamentals, valuation, risks, and growth potential, ensuring all data is current as of {current_date}.
+  expected_output: >
+    A structured report containing detailed analysis of each company.
+  agent: equity_analyst
+  context:
+    - discover_trends
+  output_file: output/research_report.json
+
+select_investment:
+  description: >
+    Review the research findings and select the single best company for investment.
+    Provide a clear rationale, highlight upside vs. risk, and ensure the choice is unique (no repeats).
+    Send a push notification to the user with the decision and a one-sentence rationale.
+    Then respond with a detailed report explaining why this company was chosen and why others were not.
+  expected_output: >
+    The chosen company with rationale; a comparison of non-selected companies with reasons for exclusion.
+  agent: investment_selector
+  context:
+    - analyze_companies
+  output_file: output/decision.md
+
